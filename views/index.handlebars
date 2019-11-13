@@ -1,0 +1,71 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+			<img src="../public/img/catburger.png" alt="burger" class="img-responsive center-block">
+		</div>
+	</div><!-- end row one -->
+
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center text-danger">EAT DA BURGER</h1>
+		</div>
+	</div><!-- end row two -->
+
+
+
+	<div class="row">
+		<div class="col-md-5">
+			<h3>Choose Burger</h3>
+			<ul>
+				{{#each burgers}}
+					{{#unless this.devoured}}
+						<li>
+							<h5>{{this.id}}. {{this.burger_name}}
+								<form action='burgers/updateOne/{{this.id}}?_method=PUT' method='POST'>
+									<input type='hidden' name='devoured' value='true'>
+									<button type='submit' class="btn btn-default">Devour it</button>
+								</form>
+							</h5>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div><!-- end column 1 -->
+
+
+		<div class="col-md-2"></div><!-- spacer column -->
+
+
+		<div class="col-md-5">
+			<h3 class="text-muted">Eaten Burgers</h3>
+			<ul>
+				{{#each burgers}}
+					{{#if this.devoured}}
+						<li>
+							<h5 class="text-muted">{{this.id}}. {{this.burger_name}}</h5>
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div><!-- end column 2 -->
+
+	</div><!-- end row three -->
+
+	<br><br>
+
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<form class="create-update-form" action="burgers/insertOne" method="POST">
+				<div class="form-group">
+					<!-- <label for="bg">Burger Name:</label> -->
+					<textarea type="text" name="name"></textarea><br>
+					<button class="btn btn-default" type="submit">Submit</button>
+					<h5 class="text-center">Please enter a burger you want to eat, then click Submit.</h5>
+				</div>
+			</form>
+		</div>
+	</div> <!--end row four-->
+
+<!-- end bootstrap container -->
+</div>
