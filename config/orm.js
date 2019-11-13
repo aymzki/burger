@@ -1,8 +1,24 @@
 //Require Connection.js
 var connection = require("../config/connection.js")
 
-//Do I need helper functions to build queries?
+// Helper functions to build queries
+function printQuestionMarks(num) {
+	var arr = [];
+	for (var i = 0; i < num; i++) {
+		arr.push('?');
+	}
+	return arr.toString();
+}
 
+function objToSql(ob) {
+	var arr = [];
+	for (var key in ob) {
+		if (ob.hasOwnProperty(key)) {
+			arr.push(key + '=' + ob[key]);
+		}
+	}
+	return arr.toString();
+}
 //Create methods that will execute the necessary MySQL commands in the controllers.
 var orm = {
     //Select All
